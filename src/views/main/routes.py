@@ -13,6 +13,4 @@ def home():
     return render_template("main/main.html", books=books)
 
 
-@main_blueprint.route("/about_page")
-def about():
-    return render_template("main/about.html")
+
