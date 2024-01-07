@@ -2,7 +2,7 @@ from flask.cli import with_appcontext
 import click
 
 from src.extentions import db
-from src.models import Book, Teacher, Mentor
+from src.models import Book, Teacher, Mentor, Role, User
 
 
 @click.command("init_db")
@@ -39,7 +39,7 @@ def populate_db():
         project_link="https://www.google.com/",
         img="fd4ae1b8-099c-401b-9e31-05cc09383078.webp",
         mentors=[mentor_1, mentor_2],
-        teachers=[teacher_1]
+        teachers=[teacher_1],
     )
     book_2 = Book(
         project_name="წიგნი_2",
@@ -60,5 +60,18 @@ def populate_db():
     book_2.create()
 
     click.echo("Created books")
+
+    click.echo("Creating role")
+    adminrole = Role(name="Admin")
+    adminrole.create()
+
+    click.echo("Creating test admin")
+    user = User(
+        username="adminuser",
+        password="Admin1234",
+        email="ananorobakidze24@gmail.com",
+        role_id=adminrole.id,
+    )
+    user.create()
 
     click.echo("Database populated!")
