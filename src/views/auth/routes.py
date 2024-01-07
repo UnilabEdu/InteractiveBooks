@@ -14,7 +14,8 @@ def login():
     error_message = None
     if form.validate_on_submit():
         user = User.query.filter(User.username == form.username.data).first()
-        if user and user.check_password(form.password.data):
+
+        if user is not None and user.check_password(form.password.data):
             login_user(user)
             next = request.args.get("next", None)
             if next:
@@ -23,7 +24,6 @@ def login():
                 return redirect(url_for("admin.index"))
             else:
                 return redirect(url_for("main.home"))
-
         else:
             error_message = "Invalid username or password. Please try again."
 
@@ -32,6 +32,7 @@ def login():
         form=form,
         error_message=error_message,
     )
+
 
 
 @auth_blueprint.route("/logout", methods=["GET", "POST"])

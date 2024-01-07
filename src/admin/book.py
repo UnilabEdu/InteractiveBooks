@@ -1,10 +1,13 @@
 from src.admin.base import SecureModelView
 from src.config import Config
 from flask_admin.form.upload import ImageUploadField
-from src.models import Teacher, Mentor, Book
+from src.models import Teacher, Mentor
 
 
 class MentorView(SecureModelView):
+    can_view_details = True
+    edit_modal = True
+    create_modal = True
     column_list = ["fullname"]
     column_searchable_list = ["fullname"]
     column_labels = {"fullname": "მენტორის სახელი და გვარი"}
@@ -12,6 +15,9 @@ class MentorView(SecureModelView):
 
 
 class TeacherView(SecureModelView):
+    can_view_details = True
+    edit_modal = True
+    create_modal = True
     column_list = ["fullname"]
     column_searchable_list = ["fullname"]
     column_labels = {"fullname": "მასწავლებლის სახელი და გვარი"}
@@ -20,13 +26,16 @@ class TeacherView(SecureModelView):
 
 
 class BookView(SecureModelView):
+    can_view_details = True
+    edit_modal = True
+    create_modal = True
     can_create = True
     can_edit = True
     can_export = True
 
     inline_models = (Mentor, Teacher)
 
-    column_filters = ["project_name", "student_fullname"]
+    column_filters = ["project_name", "student_fullname", "school", "student_class"]
 
     column_default_sort = ("project_name", True)
 

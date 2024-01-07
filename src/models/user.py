@@ -24,9 +24,15 @@ class User(BaseModel, UserMixin):
     def password(self, value):
         self._password = generate_password_hash(value)
 
+    
     def check_password(self, password):
-        return check_password_hash(self.password, password)
-
+        print(f"Checking password for user {self.username}")
+        print(f"Provided password: {password}")
+        print(f"Hashed password in the database: {self.password}")
+        result = check_password_hash(self.password, password)
+        print(f"Password check result: {result}")
+        return result
+    
     def is_admin(self):
         return self.role and self.role.name == "Admin"
 

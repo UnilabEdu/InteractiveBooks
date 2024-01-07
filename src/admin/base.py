@@ -1,9 +1,9 @@
 from flask_admin.contrib.sqla import ModelView
-from flask_admin import AdminIndexView
+from flask_admin import AdminIndexView, expose
 from flask import url_for, redirect
 from flask_admin.menu import MenuLink
-
 from flask_login import current_user
+
 
 
 class SecureModelView(ModelView):
