@@ -31,3 +31,4 @@ class LogoutMenuLink(MenuLink):
 class LoginMenuLink(MenuLink):
     def is_accessible(self):
         return not current_user.is_authenticated 
+    
