@@ -1,0 +1,31 @@
+{% extends "auth/login.html" %}
+
+{% block title%} Reset Request {% endblock %}
+
+{% block content %}
+    <div  class="container" style="width: 50%; margin-top: 8%;">
+        
+        {% if error_message %}
+            <div class="alert alert-danger" role="alert">
+                {{ error_message }}
+            </div>
+        {% endif %}
+
+        {% if success_message %}
+            <div class="alert alert-success" role="alert">
+                {{ success_message }}
+            </div>
+        {% endif %}
+        
+        <div class="bg-white p-3 rounded shadow">
+            <form method="POST">
+                <h1>Reset your Password</h1>
+                <p style="margin-bottom: 4%;">Enter the email address you used to register with.</p>
+                {{ form.hidden_tag() }}
+                {{ form.email(class="form-control mt-2 mb-4", placeholder=form.email.label.text)}}
+                <a class="btn btn-secondary mt-2" style="margin-right: 4%;" href="{{ url_for('auth.login') }}">Back to login</a>
+                {{ form.submit(class="btn btn-primary mt-2")}}
+            </form>
+        </div>
+    </div>
+{% endblock %}
