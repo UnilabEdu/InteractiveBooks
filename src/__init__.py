@@ -1,7 +1,7 @@
 from flask import Flask
 
 from src.config import Config
-from src.extentions import db, migrate, login_manager
+from src.extentions import db, migrate, login_manager, mail
 from src.views import (
     main_blueprint,
     book_blueprint,
@@ -61,6 +61,9 @@ def register_extension(app):
     admin.add_view(UserView(User, db.session))
     admin.add_view(TeacherView(Teacher, db.session, category="Teacher/Mentor"))
     admin.add_view(MentorView(Mentor, db.session, category="Teacher/Mentor"))
+
+    # Flask-Mail
+    mail.init_app(app)
     
 
 

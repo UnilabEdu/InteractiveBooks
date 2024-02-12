@@ -63,12 +63,11 @@ class BookView(SecureModelView):
 
     form_overrides = {"img": ImageUploadField}
 
-    form_args = {"img": {"base_path": Config.UPLOAD_PATH}}
+    form_args = {"img": {"base_path": Config.UPLOAD_PATH, "url_relative_path": "img/"}}
 
     column_sortable_list = [
         "project_name",
         "student_fullname",
-        "school",
         "school",
     ]
 
@@ -77,7 +76,6 @@ class BookView(SecureModelView):
         "student_fullname",
         "school",
         "student_class",
-        "school",
     ]
 
     column_labels = {
