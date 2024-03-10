@@ -10,8 +10,8 @@ search_blueprint = Blueprint("search", __name__)
 
 
 @search_blueprint.route("/search/", methods=['GET'])
-def search():
-    search_term = request.args.get('query', '').lower()
+def search_result():
+    search_term = request.args.get('search', '').lower()
 
     if search_term:
         # Split the search term into individual keywords
@@ -25,12 +25,12 @@ def search():
         # Combine the conditions using OR for name and author
         combined_condition = or_(condition_name, condition_author, condition_school)
 
-        # Use the combined condition in the query
-        search_results = Book.query.filter(combined_condition).all()
+        # Print the generated SQL query
+        search_results_query = Book.query.filter(combined_condition)
+
+        # Execute the query to get the results
+        search_results = search_results_query.all()
     else:
         search_results = []
 
     return render_template('search/search_result.html', search_term=search_term, results=search_results)
-
-
-

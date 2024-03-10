@@ -81,17 +81,17 @@
       <header class="header_container">
         <div class="header_content container">
           <div class="logos">
-            <a href="https://iliauni.edu.ge/ge" target="_blank"
-              ><img class="Logo" src="{{ url_for('static', filename='img/' + 'UnilabLogo.svg')}}" alt="Logo"
-            /></a><!--./assets/UnilabLogo.svg-->
-            <a href="https://unilab.iliauni.edu.ge/" target="_blank"
-              ><img class="UnilabLogo" src="{{ url_for('static', filename='img/' + 'logo.svg')}}" alt="Logo"
-            /></a><!--./assets/logo.svg-->
+            <a href="https://iliauni.edu.ge/ge" target="_blank">
+              <img class="Logo" src="{{ url_for('static', filename='img/' + 'UnilabLogo.svg')}}" alt="Logo"/> 
+            </a>
+            <a href="https://unilab.iliauni.edu.ge/" target="_blank">
+              <img class="UnilabLogo" src="{{ url_for('static', filename='img/' + 'logo.svg')}}" alt="Logo"/>
+            </a>
           </div>
           <div class="search_form">
-            <form>
+            <form role="search" action="{{ url_for('search.search_result') }}" method="GET">
               <label for="h-search" class="visually-hidden">Seach</label>
-              <input type="search" id="h-search" name="search" />
+              <input type="search" id="h-search" name="search" type="search" aria-label="Search" name="query" />
               <button type="submit" aria-label="Search">
                 <svg
                   class="search-icon"

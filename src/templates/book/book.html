@@ -1,30 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <div>
-        <img src="{{ url_for('static', filename='img/' + book.img) }}" alt="{{book.project_name}}" style="height: 30%; width: 30%;">
-        <h5>Book name: {{ book.project_name}}</h5>
-        <p>Author: {{ book.student_fullname}}</p>
-        <p>school: {{ book.school}}</p>
-        <p>class: {{ book.student_class}}</p>
-        <p>mentors:
-            {% for mentor in book.mentors %}
-                {{ mentor.fullname }}{% if not loop.last %}, {% endif %}
-            {% endfor %}
-        </p>
-        <p>teachers:
-            {% for teacher in book.teachers %}
-                {{ teacher.fullname }}{% if not loop.last %}, {% endif %}
-            {% endfor %}
-        </p>
-        <a href="{{ book.project_link}}"><button>პროექტის ბმული</button></a>
-    </div>
-</body>
-</html>
+
+
+{% extends 'layouts/base.html' %}
+
+
+  {% block title %}
+    Laboratory of books
+  {% endblock %}
+
+  {% block content %}
+
+        <!-- Detailed Main Content -->
+        <main class="main-container main-container-mobile" id="main-detailed">
+          <section class="detailed_section">
+            <div class="ditailed_content container">
+              <div class="detaield_image">
+                <img src="{{ url_for('static', filename='img/' + book.img) }}" alt="detaield-image" />
+              </div>
+              <div class="detailed_info">
+                <h2>{{ book.project_name }}</h2>
+                <h3>პროექტზე მუშაობდნენ:</h3>
+                <div class="project_authors">
+                  <p>მოსწავლე: <span>{{ book.student_fullname }}</span></p>
+                  <p>მენტორები: 
+                    <span>
+                    {% for mentor in book.mentors %}
+                        {{ mentor.fullname }}{% if not loop.last %}, {% endif %}
+                    {% endfor %}
+                    </span>
+                  </p>
+                  <p>
+                    მასწავლებლები: 
+                    <span>
+                    {% for teacher in book.teachers %}
+                        {{ teacher.fullname }}{% if not loop.last %}, {% endif %}
+                    {% endfor %}
+                    </span>
+                  </p>
+                  <p>
+                    სკოლა: <span>{{ book.school }}</span>
+                  </p>
+                  <p>კლასი: <span>{{ book.student_class }}</span></p>
+                </div>
+                <a href="{{ book.project_link }}" class="btn">პროექტის ბმული</a>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+
+
+{% endblock %}
+
+      
+
 
        

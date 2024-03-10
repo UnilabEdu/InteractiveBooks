@@ -10,7 +10,7 @@ books_blueprint = Blueprint("books", __name__)
 def book_lab():
     
     page = request.args.get('page', 1, type=int)
-    per_page = 1  # Number of products per page
+    per_page = 3  # Number of products per page
     pagination = Book.query.paginate(page=page, per_page=per_page, error_out=False)
     products_on_page = pagination.items
     total_pages = pagination.pages
