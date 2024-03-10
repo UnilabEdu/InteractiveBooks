@@ -1,0 +1,74 @@
+.navigation {
+  position: relative;
+
+  .burgerMenu {
+    display: none;
+
+    @include responsive(phone) {
+      display: block;
+    }
+
+    svg {
+      rect {
+        fill: #3e3e3e;
+      }
+    }
+  }
+}
+
+.overlay.active {
+  filter: blur(8px);
+  transition: 0.5s;
+}
+
+.mobileMenu {
+  position: relative;
+  transform: translateY(-300px);
+  transition: 0.5s;
+  z-index: 8;
+
+  @include flex;
+
+  .closeBtn {
+    .closeButton {
+      position: absolute;
+      right: 0.3rem;
+      top: 0.6rem;
+    }
+  }
+
+  .mobile_nav {
+    position: absolute;
+    top: 4.5rem;
+    width: 99%;
+    padding: 3.43rem 0;
+    background-color: $light-green-color;
+    border-radius: 0.68rem;
+    border: 1px solid $black-color;
+
+    @include flex;
+
+    ul {
+      @include flex;
+      flex-direction: column;
+
+      li:not(:last-child) {
+        margin-bottom: 1.25rem;
+      }
+
+      a {
+        transition: 0.3s;
+        @include text_font_style(
+          $black-color,
+          $firaGo-Medium-ff,
+          $link-fs,
+          $semiBold-w7
+        );
+
+        &:hover {
+          color: $link-hover-color;
+        }
+      }
+    }
+  }
+}

@@ -1,26 +1,129 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <div>
-        <h1 style="color: blueviolet;">წიგნების ლაბორატორია</h1>
-        <hr>
+{% extends 'layouts/base.html' %}
+
+
+  {% block title %}
+    Laboratory of books
+  {% endblock %}
+
+  {% block content %}
+
+    <!-- BooksPage Main Content -->
+    <main class="booksPage container main-container">
+        <h2>ინტერაქტიული წიგნები</h2>
+
+        <!-- Cards -->
+        <div class="cards">
+        <!-- Cards -->
+        {% for book in books.items %}
+            <div class="card">
+                <a href="{{ url_for('book.book', id=book.id)}}">
+                    <div class="img-div">
+                        <img src="{{ url_for('static', filename='img/' + book.img) }}" alt="{{book.project_name}}" />
+                    </div>
+                    <div class="book-title">
+                        <h3>{{ book.project_name}}</h3>
+                    </div>
+                </a>  
+            </div>
+        {% endfor %} 
+        </div>
+
+
+
+        <!-- Pagination -->
+        <div class="pagination">
+            <!-- Previous Button -->
+            {% if books.has_prev %}
+            <a href="{{ url_for('books.book_lab', page=books.prev_num) }}" class="prev-arr nav-btn">
+                <button><img src="{{ url_for('static', filename='img/prev.svg') }}" alt="Previous" /></button>
+            </a>
+            {% if 1 not in range(page - 2, page + 1) %}
+                <a href="{{ url_for('books.book_lab', page=1) }}">
+                    <button class="num button"><span>1</span></button>
+                </a>
+                <button class="num button active">
+                    <span class="pagination-symbol">...</span>
+                </button>
+            {% endif %}
+            {% else %}
+            <span class="disabled">
+                <button>
+                    <img src="{{ url_for('static', filename='img/prev.svg') }}" alt="Previous" />
+                </button>
+            </span>
+            {% endif %}
         
-        {% for book in books%}
-            <div>
-                <img src="{{ url_for('static', filename='img/' + book.img) }}" alt="{{book.project_name}}" style="height: 30%; width: 30%;">
-                <h5>Book name: {{ book.project_name}}</h5>
-                <p>Author: {{ book.student_fullname}}</p>
-                <a href="{{ url_for('book.book', id=book.id)}}"><button>იხილეთ პროექტი</button></a>
-            </div> 
-            <hr>
-        {% endfor %}
-    </div>
+            <!-- Page Numbers -->
+            {% if total_pages <= 3 %}
+            {% for num in range(1, total_pages + 1) %}
+                <a href="{{ url_for('books.book_lab', page=num) }}">
+                    <button class="num button {% if num == page %}active{% endif %}"><span>{{ num }}</span></button>
+                </a>
+            {% endfor %}
+            {% else %}
+            {% if page <= 2 %}
+                {% for num in range(1, 4) %}
+                <a href="{{ url_for('books.book_lab', page=num) }}">
+                    <button class="num button {% if num == page %}active{% endif %}"><span>{{ num }}</span></button>
+                </a>
+                {% endfor %}
+                {% if total_pages > 3 %}
+                <button class="num button active">
+                    <span class="pagination-symbol">...</span>
+                </button>
+                <a href="{{ url_for('books.book_lab', page=total_pages) }}">
+                    <button class="num button"><span>{{ total_pages }}</span></button>
+                </a>
+                {% endif %}
 
+            {% elif page > total_pages - 2 %}
+                {% for num in range(total_pages - 2, total_pages + 1) %}
+                  {% if num == page %}
+                    <a href="{{ url_for('books.book_lab', page=num) }}" class="num button active">
+                        <button class="num button {% if num == page %}active{% endif %}"><span>{{ num }}</span></button>
+                    </a>
+                  {% else %}
+                    <a href="{{ url_for('books.book_lab', page=num) }}" class="num button">
+                        <button class="num button {% if num == page %}active{% endif %}"><span>{{ num }}</span></button>
+                    </a>
+                  {% endif %}
+                {% endfor %}
+            
+            {% else %}
+                
+                {% for num in range(page - 1, page + 2 ) %}
+                <a href="{{ url_for('books.book_lab', page=num) }}">
+                    <button class="num button {% if num == page %}active{% endif %}"><span>{{ num }}</span></button>
+                </a>
+                {% endfor %}
+                {% if total_pages > page + 1 %}
+                <button class="num button active">
+                    <span class="pagination-symbol">...</span>
+                </button>
+                <a href="{{ url_for('books.book_lab', page=total_pages) }}">
+                    <button class="num button"><span>{{ total_pages }}</span></button>
+                </a>
+                {% endif %}
+            {% endif %}
+            {% endif %}
+        
+            <!-- Next Button -->
+            {% if books.has_next %}
+            <a href="{{ url_for('books.book_lab', page=books.next_num) }}" class="next-arr nav-btn">
+                <button>   
+                    <img src="{{ url_for('static', filename='img/prev.svg') }}" alt="Next" />  
+                </button>
+            </a>
+            {% else %}
+            <span class="disabled">
+                <button>
+                    <img src="{{ url_for('static', filename='img/next.svg') }}" alt="Next" />
+                </button>
+            </span>
+            {% endif %}
+            
+        </div>
+    </main>
+  
 
-</body>
-</html>
+{% endblock %}
