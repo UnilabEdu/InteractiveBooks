@@ -47,6 +47,7 @@ class BookView(SecureModelView):
         "student_class",
         "project_link",
         "img",
+        "mentor",
     ]
 
     form_columns = [
@@ -88,4 +89,5 @@ class BookView(SecureModelView):
         "teachers": "მასწავლებლის სახელი და გვარი",
         "project_link": "ბმული  ინტერაქტიულ წიგნზე",
         "img": "მთავარი ვიზუალი",
+        "mentor": "მენტორი",
     }
