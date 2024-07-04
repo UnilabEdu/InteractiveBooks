@@ -1,4 +1,6 @@
 from src.admin.base import SecureModelView
+from flask_ckeditor import CKEditorField
+from markupsafe import Markup
 from src.config import Config
 from flask_admin.form.upload import ImageUploadField
 from src.models import Teacher, Mentor
@@ -8,9 +10,11 @@ class MentorView(SecureModelView):
     can_view_details = True
     edit_modal = True
     create_modal = True
-    column_list = ["fullname"]
+    column_list = ["fullname","books"]
     column_searchable_list = ["fullname"]
-    column_labels = {"fullname": "მენტორის სახელი და გვარი"}
+    column_labels = {"fullname": "მენტორი",
+                     "books":"წიგნი"}
+
     column_default_sort = ("fullname", True)
 
 
@@ -18,9 +22,10 @@ class TeacherView(SecureModelView):
     can_view_details = True
     edit_modal = True
     create_modal = True
-    column_list = ["fullname"]
+    column_list = ["fullname","books"]
     column_searchable_list = ["fullname"]
-    column_labels = {"fullname": "მასწავლებლის სახელი და გვარი"}
+    column_labels = {"fullname": "მასწავლებლი",
+                     "books":"წიგნი"}
     column_default_sort = ("fullname", True)
 
 
@@ -39,14 +44,23 @@ class BookView(SecureModelView):
 
     column_default_sort = ("project_name", True)
 
+    export_types = ["csv"]
+    
+    column_formatters = {
+        "img": lambda v,c,m,n: Markup(f"<img src='/static/img/{m.img}' width='64px'>")
+    }
+    
     column_list = [
+        "img",
         "project_name",
         "student_fullname",
         "description",
         "school",
         "student_class",
         "project_link",
-        "img",
+        "teachers",
+        "mentors",
+        
     ]
 
     form_columns = [
@@ -55,11 +69,14 @@ class BookView(SecureModelView):
         "description",
         "school",
         "student_class",
-        "mentors",
         "teachers",
+        "mentors",
         "project_link",
         "img",
     ]
+    form_extra_fields = {
+        'description': CKEditorField('აღწერა')
+    }
 
     form_overrides = {"img": ImageUploadField}
 
@@ -80,12 +97,12 @@ class BookView(SecureModelView):
 
     column_labels = {
         "project_name": "სათაური",
-        "student_fullname": "მოსწავლის სახელი და გვარი",
+        "student_fullname": "მოსწავლი",
         "description": "აღწერა",
         "school": "სკოლა",
         "student_class": "კლასი",
-        "mentors": "მენტორის სახელი და გვარი",
-        "teachers": "მასწავლებლის სახელი და გვარი",
+        "teachers": "მასწავლებლი",
+        "mentors": "მენტორი",
         "project_link": "ბმული  ინტერაქტიულ წიგნზე",
         "img": "მთავარი ვიზუალი",
     }
