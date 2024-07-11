@@ -1,0 +1,206 @@
+.header_container {
+  position: relative;
+  padding: 1.2rem 0;
+  z-index: 2;
+  background-color: white;
+
+  .header_content {
+    @include flex($justify: space-between);
+
+    .logos {
+      @include flex($justify: start);
+      width: 50%;
+
+      .Logo {
+        width: 95px;
+        height: 95px;
+      }
+
+      .UnilabLogo {
+        width: 71px;
+        height: 95px;
+      }
+
+      a {
+        cursor: pointer;
+      }
+
+      a:last-child {
+        margin-left: 1.56rem;
+      }
+    }
+
+    .search_form {
+      form {
+        @include flex($justify: end, $align: end);
+        margin: 0 4rem 0 0.8rem;
+        position: relative;
+
+        .visually-hidden {
+          position: absolute;
+          margin: -1px;
+          padding: 0;
+          overflow: hidden;
+          clip: rect(0, 0, 0, 0);
+          border: 0;
+        }
+
+        input {
+          width: 19rem; // 25rem დიზაინის მიხედვით
+          height: 2.75rem; // 3.75rem დიზაინის მიხედვით
+          background-color: $search-bg-color;
+          border-radius: 1.875rem;
+          padding: 0 1rem 0 2.8rem;
+          outline: none;
+          border: none;
+          @include text_font_style(
+            $black-color,
+            $firaGo-Regular-ff,
+            $link-fs,
+            $regular-w4
+          );
+
+          &::-webkit-search-cancel-button,
+          ::-webkit-search-clear-button,
+          ::-webkit-search-results-button,
+          ::-webkit-search-results-decoration {
+            display: none;
+          }
+        }
+
+        button {
+          outline: none;
+          background-color: none;
+          border: none;
+
+          svg {
+            position: absolute;
+            left: 1rem;
+            top: 0.75rem;
+            width: 1.25rem;
+            height: 1.25rem;
+
+            @include responsive(tablet) {
+              top: 0.35rem;
+            }
+
+            path,
+            rect {
+              transition: 0.5s;
+            }
+
+            &:hover {
+              path,
+              rect {
+                stroke: $link-hover-color;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .navigation {
+      @include flex;
+
+      ul {
+        @include flex;
+        width: 34rem;
+
+        @include responsive(phone) {
+          display: none;
+        }
+
+        li:not(:first-child) {
+          margin-left: 4.6rem;
+
+          @include responsive(tablet) {
+            margin-left: 1.5rem;
+          }
+        }
+
+        li {
+          a {
+            transition: 0.3s;
+            @include text_font_style(
+              $black-color,
+              $firaGo-Medium-ff,
+              $link-fs,
+              $medium-w5
+            );
+
+            &:hover {
+              color: $link-hover-color;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @include responsive(tablet) {
+    padding: 0.8rem 0 1.3rem;
+
+    .header_content {
+      flex-wrap: wrap;
+
+      .logos {
+        width: auto;
+
+        .UnilabLogo,
+        .Logo {
+          width: 55px;
+          height: 55px;
+        }
+      }
+
+      .search_form {
+        order: 2;
+        width: 100%;
+        margin-top: 1rem;
+
+        form {
+          margin-left: 0;
+          width: 100%;
+
+          input {
+            width: 100%;
+            height: 2.125rem;
+          }
+        }
+      }
+
+      .navigation {
+        ul {
+          width: auto;
+
+          a {
+            font-size: 0.8rem;
+          }
+        }
+      }
+    }
+  }
+
+  @include responsive(phone) {
+    .header_content {
+      .search_form {
+        margin-top: 0.5rem;
+      }
+
+      .logos {
+        .UnilabLogo,
+        .Logo {
+          width: 33px;
+          height: 33px;
+        }
+
+        a:last-child {
+          img {
+            margin-left: -1rem;
+          }
+        }
+      }
+    }
+  }
+}

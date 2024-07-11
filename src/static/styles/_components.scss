@@ -1,0 +1,121 @@
+html {
+  font-size: $base-font-size;
+  scroll-behavior: smooth;
+}
+
+.main-container {
+  // min-height: calc(100vh - 533.4px);
+  background-color: $main-bg-color;
+  padding-top: 5.8rem;
+
+  @include responsive(tablet) {
+    padding-top: 2.25rem;
+  }
+
+  @include responsive(phone) {
+    padding-top: 5rem;
+  }
+}
+
+.overlay {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+}
+
+.main-container-mobile {
+  @include responsive(phone) {
+    padding-top: 1.75rem;
+  }
+}
+
+.container {
+  max-width: 1920px; // დიზაინის მიხედვით
+  padding: 0 7%;
+  margin: 0 auto;
+
+  @include responsive(pc_tablet) {
+    padding: 0 2rem;
+  }
+}
+
+.title {
+  @include text_font_style(
+    $black-color,
+    $firaGo-SemiBold-ff,
+    1.8rem,
+    $semiBold-w7
+  );
+
+  @include responsive(l-tablet) {
+    font-size: 2.2rem;
+  }
+
+  @include responsive(l-tablet) {
+    font-size: 1.68rem;
+  }
+}
+
+.bookCards_content {
+  .title {
+    @include responsive(phone) {
+      display: flex;
+      justify-content: center;
+      font-size: 24px;
+      text-align: center;
+    }
+  }
+}
+
+.subtitle {
+  @include text_font_style(
+    $black-color,
+    $firaGo-Medium-ff,
+    $link-fs,
+    $medium-w5
+  );
+
+  @include responsive(tablet) {
+    font-size: 1.25rem;
+  }
+}
+
+.paragraph {
+  line-height: 1.4rem;
+  @include text_font_style(
+    $paragraph-color,
+    $firaGo-Regular-ff,
+    $paragraph-fs,
+    $regular-w4
+  );
+
+  @include responsive(tablet) {
+    font-size: 1.25rem;
+  }
+
+  @include responsive(phone) {
+    font-size: 0.825rem;
+  }
+}
+
+.btn {
+  width: 14.4rem;
+  height: 4rem;
+  outline: none;
+  border: none;
+  border-radius: 1rem;
+  transition: 0.5s;
+  background-color: $button-bg-color;
+  @include flex;
+  @include text_font_style(
+    $black-color,
+    $firaGo-Medium-ff,
+    $link-fs,
+    $medium-w5
+  );
+}
+
+.btn:hover {
+  filter: brightness(0.8);
+}
