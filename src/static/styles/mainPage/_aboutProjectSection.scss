@@ -1,0 +1,96 @@
+.about_section {
+  background-color: $light-green-color;
+  height: 30rem;
+  padding-top: 3.4rem;
+
+  .about_content {
+    @include flex($justify: space-between, $align: start);
+
+    .about_project {
+      max-width: 53rem;
+      .title {
+        margin-bottom: 1.5rem;
+      }
+
+      .paragraph {
+        line-height: 1.4rem;
+      }
+
+      .paragraph:last-child {
+        margin-top: 2.2rem;
+      }
+    }
+
+    .about_image {
+      margin-top: -9.375rem;
+      max-width: 22.8rem;
+      max-height: 30rem;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  @include responsive(l_pc) {
+    height: 50rem;
+
+    .about_content {
+      flex-direction: column;
+      height: 100%;
+
+      .about_project {
+        .paragraph:last-child {
+          margin-top: 1.2rem;
+        }
+      }
+
+      .about_image {
+        margin: 0;
+        width: 9.125rem;
+        height: 11.687rem;
+        align-self: center;
+        -webkit-align-self: center;
+        -ms-flex-item-align: center;
+        margin-bottom: 1.5rem;
+      }
+    }
+  }
+
+  @include responsive(phone) {
+    height: 40.3rem;
+
+    .about_content {
+      .about_project {
+        .paragraph {
+          line-height: 1rem;
+        }
+        .paragraph:last-child {
+          margin-top: 0.8rem;
+        }
+      }
+      .about_image {
+        margin: 0;
+        width: 5.75rem;
+        height: 7.375rem;
+        align-self: end;
+        -webkit-align-self: flex-end;
+        -ms-flex-item-align: flex-end;
+      }
+    }
+  }
+
+  @include responsive(small_phone) {
+    .about_content {
+      .about_image {
+        margin-bottom: 4px;
+        width: 3.75rem;
+        height: 4.375rem;
+        align-self: end;
+        -webkit-align-self: flex-end;
+        -ms-flex-item-align: flex-end;
+      }
+    }
+  }
+}

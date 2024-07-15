@@ -1,35 +1,81 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <title>Document</title>
-</head>
-<body>
-    <nav class="navbar bg-body-tertiary" >
-        <div class="container-fluid">
-          <form class="d-flex" role="search" action="{{ url_for('search.search') }}" method="GET">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="query" placeholder="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-          </form>
-        </div>
-    </nav>
-    <h1 style="color: red;">Main Page</h1>
-    <div >
-        <a href="{{ url_for('books.book_lab')}}">ინტერაქტიული წიგნები</a>
-        <hr>
-        
-        {% for book in books%}
-            <div>
-                <img src="{{ url_for('static', filename='img/' + book.img) }}" alt="{{book.project_name}}" style="height: 30%; width: 30%;">
-                <h5>Book name: {{ book.project_name}}</h5>
-                <a href="{{ url_for('book.book', id=book.id)}}"><button>იხილეთ პროექტი</button></a>
-            </div> 
-            <hr>
-        {% endfor %}
-    </div>
+{% extends "layouts/base.html" %}
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 
-</body>
-</html>
+<title>{% block title%} Laboratory of Book {% endblock %}</title>
+
+{% block body %}
+<!-- Main Content -->
+<main class="main-container">
+  <!-- Greeding Section -->
+  <section class="greeting_section" id="greeting-section">
+    <div class="greeting_content container">
+      <div class="greeting">
+        <h2>მოგესალმებით</h2>
+        <h1>ინტერაქტიული წიგნების ლაბორატორიაში</h1>
+      </div>
+      <div class="greeting_img">
+        <img
+          src="{{ url_for('static', filename='assets/illustrationGreeting.svg') }}"
+          alt="illustration"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Book Cards Section -->
+  <section class="bookCards_section" id="cards-section">
+    <div class="bookCards_content container">
+      <h2 class="title">ინტერაქტიული წიგნები</h2>
+      <div class="bookCards-grid">
+      {% for book in books%}
+
+        <a href="{{ url_for('book.book', id=book.id ) }}" class="bookCard">
+          <img src="{{ url_for('static', filename='img/' + book.img) }}"  alt="{{book.project_name}}" />
+          <div class="bookCard_title">
+            <h2 class="subtitle">{{ book.project_name }}</h2>
+          </div>
+        </a>
+        
+      {% endfor %}
+
+      
+      </div>
+      <div class="button_content">
+        <a href="/book_laboratory" class="btn">ყველას ნახვა</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Project Section -->
+  <section class="about_section" id="about-section">
+    <div class="about_content container">
+      <div class="about_project">
+        <h2 class="title">პროექტის შესახებ</h2>
+        <p class="paragraph">
+          წიგნის მეგობართა და იდეატორთა კლუბებს, რომლებიც ხორციელდება
+          USAID საბაზისო განათლების პროგრამის ფარგლებში, ილიაუნის
+          განათლების სკოლა უნილაბის მხარდაჭერით ქვემო ქართლის 10 საჯარო
+          სკოლაში ახორციელებს. დაწყებითი კლასების მოსწავლეები
+          მასწავლებლის მომზადების პროგრამის სტუდენტებისა და სკოლის
+          მასწავლებლების მენტორობით ქმნიან ხელნაკეთ წიგნებსა და მათ
+          ინტერაქციულ ვერსიებს.
+        </p>
+        <p class="paragraph">
+          მოსწავლეების, სტუდენტებისა და მასწავლებლების თანამშრომლობა
+          მნიშვნელოვანი პროცესია. პროექტი ეხმარება მასწავლებლებს
+          ინოვაციური სწავლების მეთოდების დანერგვაში, სტუდენტებისთვის
+          გამოცდილების გაზიარებაში, ხოლო მოსწავლეებს შემოქმედებითი
+          უნარების განვითარებასა და საინტერესო, დაუვიწყარი გამოცდილების
+          მიღებაში. სპეციალურად პროექტისთვის ილიაუნის კიბერლაბორატორია
+          უნილაბში შეიქმნა ვებგვერდი, რომელზეც განთავსდა მოსწავლეების
+          მიერ შექმნილი წიგნების ინტერაქტიული ვერსიები.
+        </p>
+      </div>
+      <div class="about_image">
+  
+        <img src="{{ url_for('static', filename='assets/illustrationAbout.svg') }}" alt="illustration" />
+      </div>
+    </div>
+  </section>
+</main>
+
+{% endblock %}

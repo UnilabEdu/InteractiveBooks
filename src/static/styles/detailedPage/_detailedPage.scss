@@ -1,0 +1,154 @@
+.ditailed_content {
+  @include flex;
+  margin-bottom: 4rem;
+
+  .detaield_image {
+    padding: 2.5rem 3.125rem 2.5rem;
+    background-color: #e4efe3;
+    border-radius: 1rem;
+
+    img {
+      width: 38rem;
+      height: 30rem;
+      border-radius: 1rem;
+      object-fit: cover;
+      box-shadow: 0 20px 24px -4px rgba(16, 24, 40, 0.08),
+        0 0 8px -4px rgba(16, 24, 40, 0.03);
+    }
+  }
+
+  .detailed_info {
+    margin-left: 7rem;
+
+    h2 {
+      margin-bottom: 2.2rem;
+      @include text_font_style(
+        $black-color,
+        $firaGo-SemiBold-ff,
+        2.2rem,
+        $semiBold-w7
+      );
+    }
+
+    h3 {
+      margin-bottom: 1.6rem;
+      @include text_font_style(
+        $black-color,
+        $firaGo-Medium-ff,
+        1.6rem,
+        $medium-w5
+      );
+    }
+
+    .project_authors {
+      // width: 34rem;
+      margin-bottom: 3.75rem;
+
+      p {
+        margin-bottom: 1rem;
+        @include text_font_style(
+          $black-color,
+          $firaGo-Medium-ff,
+          1rem,
+          $medium-w5
+        );
+
+        span {
+          font-family: $firaGo-Regular-ff;
+          font-weight: $thin-w3;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 1480px) {
+    justify-content: space-between;
+
+    .detailed_info {
+      margin: 0;
+    }
+  }
+
+  @include responsive(l_pc) {
+    flex-direction: column;
+    padding: 0;
+
+    .detaield_image {
+      padding: 2.6rem 2rem;
+      margin-bottom: 2rem;
+      width: 100%;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .detailed_info {
+      margin: 0;
+      width: 100%;
+      padding-left: 2rem;
+
+      h2 {
+        font-size: 2.5rem;
+      }
+
+      h3 {
+        font-size: 2rem;
+      }
+
+      .project_authors {
+        p {
+          font-size: 1.5rem;
+          line-height: 2rem;
+        }
+      }
+    }
+  }
+
+  @include responsive(phone) {
+    margin-bottom: 0;
+
+    .detaield_image {
+      padding: 1.625rem 1rem;
+      border-radius: 0;
+
+      img {
+        border-radius: 0;
+      }
+    }
+
+    .detailed_info {
+      padding-left: 1rem;
+
+      h2 {
+        font-size: 1.25rem;
+        margin-bottom: 2.8rem;
+      }
+
+      h3 {
+        font-size: 1.06rem;
+      }
+
+      .project_authors {
+        margin-bottom: 2.8rem;
+
+        p {
+          font-size: 0.75rem;
+          line-height: normal;
+          margin-bottom: 1rem;
+        }
+      }
+    }
+  }
+
+  @include responsive(smallest_phone) {
+    .detailed_info {
+      .project_authors {
+        p {
+          font-size: 0.6rem;
+        }
+      }
+    }
+  }
+}
