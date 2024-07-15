@@ -1,5 +1,7 @@
 {% extends "layouts/base.html" %}
 
+<title>{% block title%} Laboratory of Book {% endblock %}</title>
+
 {% block body %}
 <!-- Main Content -->
 <main class="main-container">
@@ -29,7 +31,7 @@
         <a href="{{ url_for('book.book', id=book.id ) }}" class="bookCard">
           <img src="{{ url_for('static', filename='img/' + book.img) }}"  alt="{{book.project_name}}" />
           <div class="bookCard_title">
-            <h2 class="subtitle">ჯადოსნური კარადა</h2>
+            <h2 class="subtitle">{{ book.project_name }}</h2>
           </div>
         </a>
         

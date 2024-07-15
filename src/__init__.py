@@ -6,9 +6,7 @@ from src.views import (
     main_blueprint,
     book_blueprint,
     books_blueprint,
-    about_blueprint,
     auth_blueprint,
-    search_blueprint
 )
 from src.commands import init_db, populate_db
 from src.models import Book, User, Teacher, Mentor
@@ -19,9 +17,7 @@ BLUEPRINTS = [
     book_blueprint,
     main_blueprint,
     books_blueprint,
-    about_blueprint,
     auth_blueprint,
-    search_blueprint
 ]
 
 
