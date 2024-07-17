@@ -7,7 +7,10 @@
       <meta name="description" content="Laboratory of books, Unilab Project" />
       <meta name="author" content="Guga Kobakhidze, Luka Butskhrikidze" />
       <title>{% block title%}  {% endblock %}</title>
+      <link href="{{ url_for('admin.static', filename='bootstrap/bootstrap4/swatch/{swatch}/bootstrap.min.css'.format(swatch=config.get('FLASK_ADMIN_SWATCH', 'default')), v='4.2.1') }}"
+      rel="stylesheet">
       <link rel="stylesheet" href=" {{ url_for('static', filename='styles/css/global.css') }}" />
+
     </head>
 <body>
   {% include "layouts/header.html" %}

@@ -1,8 +1,9 @@
-{% extends "auth/login.html" %}
+{% extends "layouts/base.html" %}
+
 
 {% block title%} Reset Request {% endblock %}
 
-{% block content %}
+{% block body %}
     <div  class="container" style="width: 50%; margin-top: 8%;">
         
         {% if error_message %}
@@ -23,7 +24,7 @@
                 <p style="margin-bottom: 4%;">Enter the email address you used to register with.</p>
                 {{ form.hidden_tag() }}
                 {{ form.email(class="form-control mt-2 mb-4", placeholder=form.email.label.text)}}
-                <a class="btn btn-secondary mt-2" style="margin-right: 4%;" href="{{ url_for('auth.login') }}">Back to login</a>
+                <a class="btn btn-secondary mt-2" style="margin-right: 4%;" href="{{ url_for('main.login') }}">Back to login</a>
                 {{ form.submit(class="btn btn-primary mt-2")}}
             </form>
         </div>
