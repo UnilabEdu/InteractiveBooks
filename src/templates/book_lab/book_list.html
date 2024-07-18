@@ -8,7 +8,7 @@
 
 <div class="cards">
 
-  {% for book in books%}
+  {% for book in books.items%}
 
   <div class="card">
     <a href="{{ url_for('book.book', id=book.id ) }}">
@@ -25,11 +25,26 @@
 
 </div>
 
+{% for page in books.iter_pages() %}
+
+  {% if page %}
+
+    <h1>aaa</h1>
+    
+
+  {% else %}
+
+    ...
+
+  {% endif %}
+
+{% endfor %}
+
 <!-- Pagination -->
 <div class="pagination">
   <!-- Previous Button -->
   <button class="prev-arr nav-btn">
-    <img src="../static/assets/prev.svg" alt="Previous" />
+    <img src="./static/assets/prev.svg" alt="Previous" />
   </button>
 
   <!-- Numbers -->
@@ -55,9 +70,10 @@
 
   <!-- Next Button -->
   <button class="next-arr nav-btn">
-    <img src="../static/assets/prev.svg" alt="Next" />
+    <img src="./static/assets/prev.svg" alt="Next" />
   </button>
 </div>
+
 </main>
 
 
