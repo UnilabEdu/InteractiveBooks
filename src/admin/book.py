@@ -36,8 +36,8 @@ class BookView(SecureModelView):
     create_modal = True
     can_create = True
     can_edit = True
-    can_export = True
-
+    # can_export = True
+    
     inline_models = (Mentor, Teacher)
 
     column_filters = ["project_name", "student_fullname", "school", "student_class"]
@@ -97,12 +97,25 @@ class BookView(SecureModelView):
 
     column_labels = {
         "project_name": "სათაური",
-        "student_fullname": "მოსწავლი",
+        "student_fullname": "მოსწავლე",
         "description": "აღწერა",
         "school": "სკოლა",
         "student_class": "კლასი",
-        "teachers": "მასწავლებლი",
+        "teachers": "მასწავლებელი",
         "mentors": "მენტორი",
         "project_link": "ბმული  ინტერაქტიულ წიგნზე",
         "img": "მთავარი ვიზუალი",
     }
+    column_details_list = [
+        "img",
+        "project_name",
+        "description",
+        "student_fullname",
+
+        "school",
+        "student_class",
+
+        "project_link",
+        "teachers",
+        "mentors",
+    ]
