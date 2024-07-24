@@ -50,6 +50,7 @@ def register_extension(app):
     # Flask-Admin
     admin.init_app(app)
     admin.add_view(BookView(Book, db.session, endpoint="book_panel", name="წიგნები"))
+
     # admin.add_view(UserView(User, db.session,  name="მომხმარებლები"))
     # admin.add_view(TeacherView(Teacher, db.session, category="მასწავლებელი/მენტორი",name="მასწავლებელი"))
     # admin.add_view(MentorView(Mentor, db.session, category="მასწავლებელი/მენტორი", name="მენტორი"))

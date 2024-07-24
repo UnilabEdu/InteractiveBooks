@@ -37,7 +37,7 @@ class BookView(SecureModelView):
     can_create = True
     can_edit = True
     # can_export = True
-    
+
     inline_models = (Mentor, Teacher)
 
     column_filters = ["project_name", "student_fullname", "school", "student_class"]
