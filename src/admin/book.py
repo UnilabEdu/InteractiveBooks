@@ -44,7 +44,7 @@ class BookView(SecureModelView):
 
     column_default_sort = ("project_name", True)
 
-    export_types = ["csv"]
+    # export_types = ["csv"]
     
     column_formatters = {
         "img": lambda v,c,m,n: Markup(f"<img src='/static/img/{m.img}' width='64px'>")

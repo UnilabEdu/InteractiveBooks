@@ -87,7 +87,7 @@
                         <form class="icon" method="POST" action="{{ get_url('.delete') }}">
                             {{ delete_form.path(value=path) }}
                             {{ delete_form.csrf_token }}
-                            <button onclick="return confirm('{{ _gettext('Are you sure you want to delete \\\'%(name)s\\\' recursively?', name=name) }}')">
+                            <button onclick="return confirm('{{ _gettext('დარწმუნებული ხარ რომ წაშლა გინდა \\\'%(name)s\\\' recursively?', name=name) }}')">
                                 <i class="fa fa-times glyphicon glyphicon-remove"></i>
                             </button>
                         </form>
@@ -96,7 +96,7 @@
                     <form class="icon" method="POST" action="{{ get_url('.delete') }}">
                         {{ delete_form.path(value=path) }}
                         {{ delete_form.csrf_token }}
-                        <button onclick="return confirm('{{ _gettext('Are you sure you want to delete \\\'%(name)s\\\'?', name=name) }}')">
+                        <button onclick="return confirm('{{ _gettext('დარწმუნებული ხარ რომ წაშლა გინდა \\\'%(name)s\\\'?', name=name) }}')">
                             <i class="fa fa-trash glyphicon glyphicon-trash"></i>
                         </button>
                     </form>
