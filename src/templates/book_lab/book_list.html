@@ -21,6 +21,7 @@
       </div>
     </a>
   </div>
+
   {% endfor %}
 
 </div>
@@ -29,6 +30,9 @@
 
   {% if page %}
     
+  <a href="{{ url_for('book.book_lab', page_num=page, search=search ) }}" class="num button active">
+    <span>{{ page }}</span>
+  </a>
 
   {% else %}
 
@@ -46,9 +50,7 @@
   </button>
 
   <!-- Numbers -->
-  <button class="num button active">
-    <span>1</span>
-  </button>
+
 
   <button class="num button">
     <span>2</span>

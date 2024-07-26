@@ -38,7 +38,8 @@ class BookView(SecureModelView):
     can_edit = True
     # can_export = True
 
-    inline_models = (Mentor, Teacher)
+    inline_models = ((Mentor,{"column_labels":{"fullname": "სახელი და გვარი"}}), 
+                     (Teacher,{"column_labels":{"fullname": "სახელი და გვარი"}}))
 
     column_filters = ["project_name", "student_fullname", "school", "student_class"]
 
