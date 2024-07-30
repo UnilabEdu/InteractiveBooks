@@ -5,8 +5,6 @@ from src.extentions import db, migrate, login_manager, mail
 from src.views import (
     main_blueprint,
     book_blueprint,
-    books_blueprint,
-    auth_blueprint,
 )
 from src.commands import init_db, populate_db
 from src.models import Book, User, Teacher, Mentor
@@ -16,8 +14,6 @@ from src.admin import admin, BookView, UserView, MentorView, TeacherView
 BLUEPRINTS = [
     book_blueprint,
     main_blueprint,
-    books_blueprint,
-    auth_blueprint,
 ]
 
 
@@ -45,7 +41,7 @@ def register_extension(app):
 
     # Flask-Login
     login_manager.init_app(app)
-    login_manager.login_view = "auth.login"
+    login_manager.login_view = "main.login"
 
     @login_manager.user_loader
     def load_user(user_id):
@@ -53,10 +49,11 @@ def register_extension(app):
 
     # Flask-Admin
     admin.init_app(app)
-    admin.add_view(BookView(Book, db.session, endpoint="book_panel", name="Books"))
-    admin.add_view(UserView(User, db.session))
-    admin.add_view(TeacherView(Teacher, db.session, category="Teacher/Mentor"))
-    admin.add_view(MentorView(Mentor, db.session, category="Teacher/Mentor"))
+    admin.add_view(BookView(Book, db.session, endpoint="book_panel", name="წიგნები"))
+
+    # admin.add_view(UserView(User, db.session,  name="მომხმარებლები"))
+    # admin.add_view(TeacherView(Teacher, db.session, category="მასწავლებელი/მენტორი",name="მასწავლებელი"))
+    # admin.add_view(MentorView(Mentor, db.session, category="მასწავლებელი/მენტორი", name="მენტორი"))
 
     # Flask-Mail
     mail.init_app(app)

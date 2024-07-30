@@ -13,7 +13,7 @@ admin = Admin(
     
 )
 
-admin.add_link(LogoutMenuLink(name="Logout", category="", url="/logout"))
+admin.add_link(LogoutMenuLink(name="გამოსვლა", category="", url="/logout"))
 
 
 
