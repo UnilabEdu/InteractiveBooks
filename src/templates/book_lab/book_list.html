@@ -26,13 +26,25 @@
 
 </div>
 
+<div class="pagination">
+
+{% if books.page  != 1 %}
+  <a href="{{ url_for('book.book_lab', page_num=page_num-1, search=search ) }}">
+    <button class="prev-arr nav-btn">
+      <img src="./static/assets/prev.svg" alt="Previous" />
+    </button>
+  </a>
+{% endif %}
+
 {% for page in books.iter_pages() %}
 
   {% if page %}
-    
-  <a href="{{ url_for('book.book_lab', page_num=page, search=search ) }}" class="num button active">
-    <span>{{ page }}</span>
-  </a>
+
+    <a href="{{ url_for('book.book_lab', page_num=page, search=search ) }}">
+      <button class="num button">
+        <span>{{ page }}</span>
+      </button>
+    </a>
 
   {% else %}
 
@@ -42,37 +54,18 @@
 
 {% endfor %}
 
-<!-- Pagination -->
-<div class="pagination">
-  <!-- Previous Button -->
-  <button class="prev-arr nav-btn">
-    <img src="./static/assets/prev.svg" alt="Previous" />
-  </button>
+{% if books.pages  != page_num %}
+  <a href="{{ url_for('book.book_lab', page_num=page_num+1, search=search ) }}">
+    <button class="next-arr nav-btn">
+      <img src="./static/assets/prev.svg" alt="Next" />
+    </button>
+  </a>
+{% endif %}
 
-  <!-- Numbers -->
-
-
-  <button class="num button">
-    <span>2</span>
-  </button>
-
-  <button class="num button">
-    <span>3</span>
-  </button>
-
-  <button class="num button">
-    <span>...</span>
-  </button>
-
-  <button class="num button">
-    <span>10</span>
-  </button>
-
-  <!-- Next Button -->
-  <button class="next-arr nav-btn">
-    <img src="./static/assets/prev.svg" alt="Next" />
-  </button>
 </div>
+
+<!-- Pagination -->
+
 
 </main>
 

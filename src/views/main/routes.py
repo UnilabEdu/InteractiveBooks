@@ -13,12 +13,13 @@ main_blueprint = Blueprint("main", __name__)
 @main_blueprint.route("/home")
 def home():
     search = request.args.get("search")
+
     if search:
-        search = f"%{search}%"
-        books = Book.query.filter(Book.project_name.ilike(search))
+        books = Book.query.filter(Book.project_name.ilike(f"%{search}%")).paginate(per_page=12, error_out=True)
     else:
-        books = Book.query.all()
-    return render_template("main/main.html", books=books)
+        books = Book.query.paginate(per_page=12, error_out=True)
+
+    return render_template("main/main.html", books=books, search=search)
 
 
 @main_blueprint.route("/login", methods=["GET", "POST"])
